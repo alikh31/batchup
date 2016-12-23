@@ -1,0 +1,33 @@
+{
+  "name": "batchup",
+  "version": "0.0.1",
+  "description": "batching for node.js",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alikh31/batchup.git"
+  },
+  "keywords": [
+    "batch"
+  ],
+  "author": "Ali Khoramshahi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alikh31/batchup/issues"
+  },
+  "homepage": "https://github.com/alikh31/batchup#readme",
+  "devDependencies": {
+    "eslint": "^3.12.2",
+    "eslint-config-google": "^0.7.1",
+    "gulp": "^3.9.1",
+    "gulp-istanbul": "^1.1.1",
+    "gulp-mocha": "^3.0.1",
+    "should": "^11.1.2"
+  }
+}
