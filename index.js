@@ -1,6 +1,5 @@
 'use strict'
 const EventEmitter = require('events')
-const SPECCHAR = String.fromCharCode(31) + String.fromCharCode(6)
 
 class batchup extends EventEmitter {
   constructor(options) {
@@ -15,8 +14,7 @@ class batchup extends EventEmitter {
       if(this.curBatch.length === 0) return
 
       this.flushed = new Promise((resolve, reject) => {
-        const concated = this.curBatch.reduce((c, n)=> c += n + SPECCHAR, '')
-        const p = this._cb.call(this.context || this, concated)
+        const p = this._cb.call(this.context || this, this.curBatch)
         this.curBatch = []
 
         if(!p) return resolve()
@@ -32,13 +30,6 @@ class batchup extends EventEmitter {
 
   add(data) {
     this.flushed.then(() => this.curBatch.push(data))
-  }
-
-  unPatch(data) {
-    if(typeof data !== 'string')
-      throw new Error('un-patch data type should be string')
-
-    return data.split(SPECCHAR).filter((a) => a.trim() !== '')
   }
 
   stop(waitToFlush) {
