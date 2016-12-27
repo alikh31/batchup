@@ -26,7 +26,7 @@ class batchup extends EventEmitter {
     const p = this._cb.call(this.context, this.currentBatch)
     this.currentBatch = []
 
-    if(!p) return this.flushed = true
+    if(!p || typeof p.then !== 'function') return this.flushed = true
     p.then(() => this.flushed = true)
     .catch((e) => {
       this.emit('error', 'fail to flush batch, ' + e, e)
